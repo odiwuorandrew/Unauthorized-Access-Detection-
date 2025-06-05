@@ -5,10 +5,10 @@ Unauthorized Access Detection Script 🚨
 This Python script **monitors failed login attempts** in real time, alerting users of **unauthorized access** attempts on a Windows system using **Event Viewer logs**.
 
 ## 🛠 Features
-✅ **Live monitoring** – Refreshes automatically every **30 seconds**.
-✅ **Uses WMI (Windows Management Instrumentation)** for event logs.
-✅ **Shows last 5 unauthorized login attempts**.
-✅ **Simple & lightweight** – Works without extra dependencies!
+🔥**Live monitoring** – Refreshes automatically every **30 seconds**.
+🔥**Uses WMI (Windows Management Instrumentation)** for event logs.
+🔥**Shows last 5 unauthorized login attempts**.
+🔥**Simple & lightweight** – Works without extra dependencies!
 
 ## 🚀 Requirements
 - Windows OS
@@ -16,12 +16,12 @@ This Python script **monitors failed login attempts** in real time, alerting use
 - Administrator privileges(to access security logs)
 
 ## 🔧 Installation & Setup
-1️⃣ Install Python from [Python’s official website](https://www.python.org/downloads/).
-2️⃣ Install WMI module:
+💫 Install Python from [Python’s official website](https://www.python.org/downloads/).
+💫Install WMI module:
      bash
      pip install wmi
    
-  3️⃣ Run the script:
+  💫Run the script:
      bash
      python detect_unauthorized_access.py
    
@@ -41,7 +41,7 @@ This Python script **monitors failed login attempts** in real time, alerting use
 🔄 Waiting for new login attempts... (Refreshing in 30 sec)
 ```
 
-*⚠ Disclaimer*
+*⚠️⚠️ Disclaimer⚠️⚠️*
 🚨 *This script is for educational and security purposes only!* 🚨
 Please ensure you have *proper authorization* before monitoring system logs.
 
@@ -54,4 +54,4 @@ Please ensure you have *proper authorization* before monitoring system logs.
 Want to *improve the script*? Feel free to submit a *pull request* or raise issues on GitHub!
 
 ---
-©2025 by:Odiwuor| (https://github.com/odiwuorandrew)
+©2025 by:Odiwuor| https://github.com/odiwuorandrew
