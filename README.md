@@ -19,12 +19,14 @@ This Python script **monitors failed login attempts** in real time, alerting use
 💫 Install Python from [Python’s official website](https://www.python.org/downloads/).
 
 💫Install WMI module:
-     bash
+
+   
+bash
      pip install wmi
    
   💫Run the script:
-     bash
-     python detect_unauthorized_access.py
+  
+ bash   python detect_unauthorized_access.py
    
 
 🎯 Usage
