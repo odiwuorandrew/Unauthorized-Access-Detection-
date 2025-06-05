@@ -17,6 +17,7 @@ This Python script **monitors failed login attempts** in real time, alerting use
 
 ## 🔧 Installation & Setup
 💫 Install Python from [Python’s official website](https://www.python.org/downloads/).
+
 💫Install WMI module:
      bash
      pip install wmi
