@@ -5,7 +5,7 @@ Unauthorized Access Detection Script 🚨
 This Python script **monitors failed login attempts** in real time, alerting users of **unauthorized access** attempts on a Windows system using **Event Viewer logs**.
 
 ## 🛠 Features
-🔥**Live monitoring** – Refreshes automatically every **30 seconds**.
+🔥**Live monitoring** – Refreshes automatically every **15 seconds**.
 🔥**Uses WMI (Windows Management Instrumentation)** for event logs.
 🔥**Shows last 5 unauthorized login attempts**.
 🔥**Simple & lightweight** – Works without extra dependencies!
@@ -30,19 +30,9 @@ bash
    
 
 🎯 Usage
-🔹 The script automatically checks for failed login attempts every 30 seconds.
+🔹 The script automatically checks for failed login attempts every 15 seconds.
 🔹 If suspicious activity is found, it displays the last 5 unauthorized access attempts.
 🔹 To stop monitoring, simply *press CTRL+C* in the terminal.
-
-*📌 Example Output*
-```
-🔍 Live Monitoring for Unauthorized Access... (2025-06-05 10:30:00)
-🚨 Unauthorized Access Attempts Detected! 🚨
-[2025-06-05 10:29:45] Failed Login Attempt: User=Admin
-[2025-06-05 10:28:12] Failed Login Attempt: User=Guest
-[2025-06-05 10:27:34] Failed Login Attempt: User=Unknown
-🔄 Waiting for new login attempts... (Refreshing in 30 sec)
-```
 
 *⚠️⚠️ Disclaimer⚠️⚠️*
 🚨 *This script is for educational and security purposes only!* 🚨
