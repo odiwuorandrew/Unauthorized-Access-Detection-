@@ -1,1 +1,27 @@
+name: Python Script Automation
 
+on:
+  push:
+    branches:
+      - main  # Runs when code is pushed to the main branch
+  workflow_dispatch:  # Allows manual execution of the workflow
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt || echo "No requirements file found."
+
+      - name: Run unauthorized access detection script
+        run: |
+          python detect_unauthorized_access.py
