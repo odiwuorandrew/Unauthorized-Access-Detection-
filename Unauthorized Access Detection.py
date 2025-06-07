@@ -1,4 +1,3 @@
-python
 import win32evtlog
 import datetime
 import time
