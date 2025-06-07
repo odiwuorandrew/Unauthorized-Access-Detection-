@@ -1,25 +1,53 @@
-import wmi
-import time
+python
+import win32evtlog
 import datetime
+import time
 
-def check_failed_logins_windows():
-    c = wmi.WMI()
-    unauthorized_attempts = []
+Configurable settings
+LOG_TYPE = 'Security'
+EVENT_ID = 4625  # Failed logon
+THRESHOLD = 5  # Max failed attempts before alert
+TIME_WINDOW = 300  # Look back this many seconds (5 minutes)
+CHECK_INTERVAL = 15  # Check every 15 seconds
+LOG_FILE = 'unauthorized_access_log.txt'
 
-    for log in c.Win32_NTLogEvent(EventCode="4625", Logfile="Security"):
-        unauthorized_attempts.append(f"[{log.TimeGenerated}] Failed Login Attempt: User={log.InsertionStrings[5]}")
+def get_failed_logins():
+    server = 'localhost'
+    log_type = LOG_TYPE
+    hand = win32evtlog.OpenEventLog(server, log_type)
+    flags = win32evtlog.EVENTLOG_BACKWARDS_READ | win32evtlog.EVENTLOG_SEQUENTIAL_READ
+    now = datetime.datetime.now()
+    events = []
 
-    if unauthorized_attempts:
-        print("\n🚨 Unauthorized Access Attempts Detected! 🚨")
-        for attempt in unauthorized_attempts[-5:]:  # Show last 5 failed attempts
-            print(attempt)
-    else:
-        print("\n✅ No unauthorized login attempts detected.")
+    try:
+        while True:
+            records = win32evtlog.ReadEventLog(hand, flags, 0)
+            if not records:
+                break
+            for event in records:
+                if event.EventID == EVENT_ID:
+                    event_time = event.TimeGenerated
+[07/06, 13:13] ChatGPT: if (now - event_time).total_seconds() <= TIME_WINDOW:
+                        events.append(event)
+            break  # Check only most recent batch
+    except Exception as e:
+        print(f"[!] Error reading event log: {e}")
+    return events
 
-if __name__ == "__main__":
-    print(f"\n🔍 Live Monitoring for Unauthorized Access... ({datetime.datetime.now()})")
+def log_alert(events):
+    with open(LOG_FILE, 'a') as f:
+        f.write(f"\n[{datetime.datetime.now()}] ALERT: {len(events)} failed login attempts detected.\n")
+        for event in events:
+            f.write(f"Time: {event.TimeGenerated}, Source: {event.SourceName}, Event ID: {event.EventID}\n")
 
+def monitor():
+    print("[*] Unauthorized Access Monitor started.")
     while True:
-        check_failed_logins_windows()
-        print("\n🔄 Waiting for new login attempts... (Refreshing in 15 sec)")
-        time.sleep(15)  # Check every 15 seconds
+        failed_logins = get_failed_logins()
+        if len(failed_logins) >= THRESHOLD:
+            print(f"[!] ALERT: {len(failed_logins)} failed login attempts detected!")
+            log_alert(failed_logins)
+        time.sleep(CHECK_INTERVAL)
+
+if _name_ == "_main_":
+    monitor()
